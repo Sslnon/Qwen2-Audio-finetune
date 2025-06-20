@@ -1,6 +1,6 @@
 import os 
 import torch
-import torch_npu
+# import torch_npu
 import torch.distributed as dist
 import deepspeed
 # 设置分布式运行环境
