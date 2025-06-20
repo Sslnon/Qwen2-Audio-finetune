@@ -1,3 +1,7 @@
 exp/*
 kernel_meta
 outputs
+*.pyc
+2jsonl.py
+*.scp
+*.jsonl
