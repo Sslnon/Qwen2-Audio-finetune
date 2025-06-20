@@ -1,1 +1,5 @@
-{"task": "ASR", "prompt": "<|audio_bos|><|AUDIO|><|audio_eos|>Detect the language and recognize the speech: <|zh|>"}
+{"task": "enst", "prompt": "<|audio_bos|><|AUDIO|><|audio_eos|>Detect the language and translate the speech into Chinese: <|en|>"}
+{"task": "jpst", "prompt": "<|audio_bos|><|AUDIO|><|audio_eos|>Detect the language and translate the speech into Chinese: <|jp|>"}
+{"task": "frst", "prompt": "<|audio_bos|><|AUDIO|><|audio_eos|>Detect the language and translate the speech into Chinese: <|fr|>"}
+{"task": "dest", "prompt": "<|audio_bos|><|AUDIO|><|audio_eos|>Detect the language and translate the speech into Chinese: <|de|>"}
+{"task": "esst", "prompt": "<|audio_bos|><|AUDIO|><|audio_eos|>Detect the language and translate the speech into Chinese: <|es|>"}

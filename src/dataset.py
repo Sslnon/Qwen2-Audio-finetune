@@ -10,14 +10,14 @@ import time
 import soundfile
 
 class AudioDatset(torch.utils.data.Dataset):
-    def __init__(self,data_path,prompt_path=None,wav_type="ark"):
+    def __init__(self,data_path,prompt_path=None,wav_type="wav"):
         print("[Dataset] Processing")
         self.wav_scp = {}
         self.tasks = []
         self.utt2num_samples = {}
         self.prompt = {}
         self.wav_type = wav_type
-        with open(os.path.join(data_path,"my_wav.scp")) as f:
+        with open(os.path.join(data_path,"wav.scp")) as f:
             for line in f:
                 id,wav_path = line.strip().split(" ",1)
                 self.wav_scp[id] = wav_path
@@ -29,22 +29,13 @@ class AudioDatset(torch.utils.data.Dataset):
                 item = json.loads(line)
                 self.prompt[item["task"]] = item["prompt"]
 
-        # with open(os.path.join(data_path,"utt2num_samples")) as f:
-        #     for line in f:
-        #         id,num_samples = line.strip().split(" ",1)
-        #         self.utt2num_samples[id] = num_samples
     def __len__(self):
         return len(self.tasks)
     def __getitem__(self,idx):
         key = self.tasks[idx]["key"]
         target = self.tasks[idx]["target"]
         prompt = self.prompt[self.tasks[idx]["task"]]
-        if self.wav_type == "ark":
-            audio = kaldiio.load_mat(self.wav_scp[key])[1].astype(np.float32) / 32768
-        elif self.wav_type == "wav":
-            audio = soundfile.read(self.wav_scp[key])[0]
-        else:
-            exit(1)
+        audio = soundfile.read(self.wav_scp[key])[0]
         return {
             "prompt":prompt,
             "audio":audio,

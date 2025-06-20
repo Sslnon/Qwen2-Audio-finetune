@@ -45,10 +45,10 @@ def train_ddp(cfg):
     peft_cfg = dict(cfg.peft)
     peft_cfg["target_modules"] = list(peft_cfg["target_modules"])
     peft_cfg = LoraConfig(**peft_cfg)
-    model = Qwen2AudioForConditionalGeneration.from_pretrained(cfg.env.model_path,trust_remote_code=True)
+    model = Qwen2AudioForConditionalGeneration.from_pretrained(cfg.env.model_path,trust_remote_code=True,torch_dtype=torch.bfloat16)
     # model._merge_input_ids_with_audio_features = types.MethodType(_merge_input_ids_with_audio_features, model)
     model = get_peft_model(model, peft_cfg)
-    model.to(device)
+    model.to(device, dtype=torch.bfloat16)
     model.print_trainable_parameters()
 
     model = DDP(model, device_ids=[local_rank])
