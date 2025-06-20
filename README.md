@@ -2,23 +2,14 @@
 This is a repository prepared for fine-tuning Qwen2-Audio, supporting both GPU and NPU. It supports reading and writing data in ark and wav formats, and is compatible with DDP, DeepSpeed, and LoRA.  
 
 # Requirements  
-The following are the dependencies required to run this project:  
-```plaintext  
-numpy==1.26.0  
-torch==2.1.0  
-torch-npu==2.1.0.post10 (if using NPU)  
-torchaudio==2.1.0  
-torchvision==0.16.0  
-soundfile  
-transformers==4.46.3  
-hydra  
-OmegaConf  
-deepspeed  
-```  
+python 3.11
+cuda 12.4
+pip install -r requirements.txt
 
 # Train  
 ## Data Preparation  
 Please refer to the sample data path `/data/aishell-1` to prepare your data.  
+use wav instead of ark
 ```  
 multitask.jsonl  
 my_wav.scp  
@@ -44,12 +35,6 @@ Run the following command to start training:
 bash train.sh  
 ```  
 
-# RoadMap  
+# TODO
 
-## Notes  
-- **Data Path**: Ensure that `train_data_path` and `eval_data_path` point to the correct data directories.  
-- **Device Selection**: Based on your hardware environment, set `device_type` to `npu` or `cuda`. If not using NPU, comment out all `import torch_npu` statements. If you encounter any errors related to NPU, modify them to `cuda`.  
-- **Dependency Installation**: Ensure all dependencies are correctly installed. If not installed, you can use the following command:  
-```  
-pip install numpy==1.26.0 torch==2.1.0 torch-npu==2.1.0.post10 torchaudio==2.1.0 torchvision==0.16.0  
-```
+add swanlab / wandb
