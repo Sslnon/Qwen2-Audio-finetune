@@ -3,7 +3,9 @@ This is a repository prepared for fine-tuning Qwen2-Audio, supporting both GPU a
 
 # Requirements  
 python 3.11
+
 cuda 12.4
+
 pip install -r requirements.txt
 
 # Train  
